@@ -1,10 +1,17 @@
 <html>
     <head>
-        <title>Movie Viewer</title>
+        <title>Movie Database</title>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
             
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+        <body style=background-color:powderblue></body>
+        <style>
+        h1 {text-align: center;} 
+        div {text-align: center;}
+        table {text-align: center;}
+        </style>
 
         
 
@@ -13,6 +20,10 @@
         <div id="create-update" style="display:none">
             <h2>create-edit</h2>
             <table id="createUpdateForm">
+                <tr>
+                    <td>ID</td>
+                    <td><input type="hidden" name="id"/></td>
+                </tr>
                 <tr>
                     <td>Title</td>
                     <td><input type="text" name="title"></td>
@@ -27,29 +38,19 @@
                 </tr>
                 <tr>
                     <td></td><td>
-                        <button id="create-button" onclick="doCreate()">Create</button>     
-                        <button id="update-button" onclick="doUpdate()">Update</button>
+                        <button id="create-button" onclick="doCreate()" style="width:80px;height:50px;border: 2px solid #000000;">Create</button>     
+                        <button id="update-button" onclick="doUpdate()" style="width:80px;height:50px;border: 2px solid #000000;">Update</button>
                     </td>
                 </tr>
             </table>
         </div>
         <div id="display">
-            <h2>Movie Viewer</h2>
-            <button onClick="showCreate()">Create</button>
+            <h2 style="font-family:verdana;font-size:600%;">Movie Database</h2>
+            <button onClick="showCreate()" style="width:250px;height:50px;background-color: #f6fa1b;border: 2px solid #000000;">Create</button>
             <table id="movieTable" class="table">
                 <tr>
                     <th>id</th><th>title</th><th>director</th><th>price</th><th></th><th></th>
                 </tr>
-                <tr id="123">
-                    <td>123!!!!!!</td><td>fowx</td><td>Jerry Adams</td><td>333!!!!!!!!!!</td>
-                    <td>
-                        <button id="update-button" onclick="doUpdate()">Update</button>
-                    </td>
-                    <td>     
-                        <button id="delete-button" onclick="doDelete()">Delete</button>
-                    </td>
-                </tr>
-                
             </table>
 
         </div>
@@ -86,10 +87,9 @@
         }
         function populateForm(movie){
             var form = document.getElementById('createUpdateForm')
-
                 
             form.querySelector('input[name="id"]').value = movie.id
-            form.querySelector('input[name="id"]').disabled=true
+            form.querySelector('input[name="id"]').disabled = true
                 
             form.querySelector('input[name="title"]').value = movie.title
             form.querySelector('input[name="director"]').value = movie.director
@@ -97,7 +97,6 @@
         }
         function clearForm() {
             var form = document.getElementById('createUpdateForm')
-
 
             form.querySelector('input[name="id"]').value = ''
             form.querySelector('input[name="id"]').disabled = false
@@ -118,15 +117,17 @@
                 dataType:"JSON",
                 contentType: "application/json; charset=utf-8",
                 success:function(result){
-                    console.log(result) 
+                    console.log(result)
                     addMovieToTable(movie)
                     showDisplay()
                     clearForm()
-            },
+                },
                 error:function(xhr,status,error){
                     console.log("error"+error)
+
                 }
             })
+           
                
         }
         function doUpdate(){
@@ -136,7 +137,7 @@
         }
         function updateServer(movie){
            $.ajax({
-                url: "/movies/"+movie.id,
+                url:"/movies/"+movie.id,
                 data: JSON.stringify(movie),
                 method: "PUT",
                 dataType: "JSON",
@@ -159,7 +160,7 @@
             var index = rowElement.rowIndex;
             id = rowElement.getAttribute("id");
             $.ajax({
-                url:"/movies/"+ISBN,
+                url:"/movies/"+id,
                 method:"DELETE",
                 dateType:"JSON",
                 success:function(result){
@@ -180,28 +181,27 @@
         }
         function getMovieFromForm(){
             var form = document.getElementById('createUpdateForm')
-
             var movie = {}
             movie.id = form.querySelector('input[name="id"]').value
             movie.title = form.querySelector('input[name="title"]').value
             movie.director = form.querySelector('input[name="director"]').value
             movie.price = form.querySelector('input[name="price"]').value
-            //console.log(book)
-             return movie
+            //console.log(movie)
+            return movie
         }
         function showDisplay() {
-                document.getElementById('display').style.display = "block"
-                document.getElementById('create-update').style.display = "none"
+            document.getElementById('display').style.display = "block"
+            document.getElementById('create-update').style.display = "none"
 
         }
         
         function populateTable(){
             //ajax getAll
            $.ajax({
-               url:'http://127.0.0.1:5000/movies',
-               method:'GET',
-               datatype:'JSON',
-               success:function(results){
+               "url":'http://127.0.0.1:5000/movies',
+               "method":'GET',
+               "datatype":'JSON',
+               "success":function(results){
                     for (movie of results){
                         addMovieToTable(movie)
                     }
@@ -215,21 +215,21 @@
         }
         function addMovieToTable(movie){
             //console.log("working so far")
-            var tableElem = document.getElementById("movieTable")
-            var rowElem = tableElem.insertRow(-1)
+            tableElem = document.getElementById("movieTable")
+            rowElem = tableElem.insertRow(-1)
             rowElem.setAttribute("id", movie.id)
-            var cell1 = rowElem.insertCell(0)
+            cell1 = rowElem.insertCell(0)
             cell1.innerHTML = movie.id
-            var cell2 = rowElem.insertCell(1)
+            cell2 = rowElem.insertCell(1)
             cell2.innerHTML = movie.title
-            var cell3 = rowElem.insertCell(2)
+            cell3 = rowElem.insertCell(2)
             cell3.innerHTML = movie.director
-            var cell4 = rowElem.insertCell(3)
+            cell4 = rowElem.insertCell(3)
             cell4.innerHTML = movie.price
-            var cell5 = rowElem.insertCell(4)
+            cell5 = rowElem.insertCell(4)
             cell5.innerHTML = '<button onclick="showUpdate(this)">Update</button>'
-            var cell6 = rowElem.insertCell(5)
-            cell6.innerHTML = '<button onclick="doDelete(this)">delete</button>'
+            cell6 = rowElem.insertCell(5)
+            cell6.innerHTML = '<button onclick="doDelete(this)">Delete</button>'
         }
         populateTable()
 
