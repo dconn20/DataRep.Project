@@ -1,4 +1,6 @@
-# HDip Data Analytics 2020 Data Representation project
+# HDip Data Analytics 2020 
+
+# Data Representation Project
 
 ### Lecturer: Andrew Beatty
 
