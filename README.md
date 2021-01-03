@@ -11,9 +11,11 @@
 
 #### Purpose
 
-Demonstrate a python Flask server with a REST API that performs CRUD operations on a database table, and create a
+Build a python Flask server with a REST API that performs CRUD operations on a database table, and create a
 html web interface that uses AJAX to connect to the server to perform the CRUD operations. The 'MySQL' package
 is used to access and update the sql database.
+
+********************************************************************************************************************************
 
 #### Repository files
 
@@ -31,6 +33,7 @@ initdb.sql - Sql script that could be used to create database table
 
 requirements.txt - Text file containing environment context for running the code
 
+***********************************************************************************************************************************************************
 
 #### To Run
 
@@ -49,3 +52,5 @@ run: pip install -r requirements.txt
 Installation of dependencies is complete.
 
 In a browser address bar: http://127.0.0.1:5000/index.html - starts the web interface that uses AJAX to perform database I/O via the server CRUD operations can then be performed.
+
+***********************************************************************************************************************************************************************
