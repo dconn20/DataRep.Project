@@ -41,7 +41,7 @@ MySQL will need to be installed first (if it is not already present).
 
 For instructions: https://dev.mysql.com/doc/mysql-installation-excerpt/5.5/en/windows-install-archive.html 
 
-Download and include python option.
+Download and include python option
 
 Open a terminal or command prompt
 
@@ -49,8 +49,10 @@ Navigate to the folder with requirements.txt
 
 run: pip install -r requirements.txt
 
-Installation of dependencies is complete.
+Installation of dependencies is complete
 
-In a browser address bar: http://127.0.0.1:5000/index.html - starts the web interface that uses AJAX to perform database I/O via the server CRUD operations can then be performed.
+In the command prompt run python server.py, this starts the server running at 127.0.0.1:5000
+
+In a browser address bar open http://127.0.0.1:5000/index.html - this starts the web interface that uses AJAX to perform database I/O via the server 
 
 ***********************************************************************************************************************************************************************
