@@ -1,10 +1,5 @@
 from flask import Flask, jsonify, url_for, request, redirect, abort
 
-#from flask_cors import CORS
-#from flask.helpers import url_for
-
-
-
 from MovieDAO import MovieDao
 
 app = Flask(__name__, static_url_path='', static_folder='staticpages')
@@ -19,20 +14,18 @@ def index():
 def getAll():
     return jsonify(MovieDao.getAll())
 
-# find by id
+# Find by id
 @app.route('/movies/<int:id>')
 def findById(id):
     return jsonify(MovieDao.findById(id))
 
-# create
+# Create
 @app.route('/movies', methods=['POST'])
 def create():
-    #global nextId
     if not request.json:
         abort(400)
 
     movie = {
-        #"id": nextId,
         "title": request.json["title"],
         "director": request.json["director"],
         "price": request.json["price"]
@@ -41,7 +34,7 @@ def create():
     return jsonify(MovieDao.create(movie))
     
 
-# update
+# Update
 @app.route('/movies/<int:id>', methods=['PUT'])
 def update(id):
     foundMovie = MovieDao.findById(id)
@@ -58,13 +51,13 @@ def update(id):
 
     return jsonify(currentMovie)
 
-# delete
+# Delete
 @app.route('/movies/<int:id>', methods=['DELETE'])
 def delete(id):
     MovieDao.delete(id)
 
     return jsonify({"done":True})
 
-
+# Main
 if __name__ == "__main__":
     app.run(debug=True)

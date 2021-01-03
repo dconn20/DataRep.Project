@@ -56,3 +56,19 @@ In the command prompt run python server.py, this starts the server running at 12
 In a browser address bar open http://127.0.0.1:5000/index.html - this starts the web interface that uses AJAX to perform database I/O via the server 
 
 ***********************************************************************************************************************************************************************
+
+#### References
+
+Freecodecamp.org https://www.freecodecamp.org/news/how-to-build-a-web-application-using-flask-and-deploy-it-to-the-cloud-3551c985e492/
+
+Redhat.com https://www.redhat.com/en/topics/api/what-is-a-rest-api
+
+W3schools.com https://www.w3schools.com/html/
+
+Geeksforgeeks.org https://www.geeksforgeeks.org/data-access-object-pattern/
+
+W3schools.com https://www.w3schools.com/css/css3_buttons.asp
+
+W3schools.com https://www.w3schools.com/bootstrap4/bootstrap_tables.asp
+
+

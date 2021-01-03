@@ -10,13 +10,12 @@ class MovieDao:
             password = '',
             database ='datarepresentation'
         )
-        #print ("connection made")
-
+        
+    # Create
     def create(self, movie):
         cursor = self.db.cursor()
         sql = "insert into Movies (title, director, price) values (%s,%s,%s)"
         values = [
-            #movie['id'],
             movie['title'],
             movie['director'],
             movie['price']
@@ -25,19 +24,21 @@ class MovieDao:
         self.db.commit()
         return cursor.lastrowid
 
+    # Get All
     def getAll(self):
         cursor = self.db.cursor()
         sql = 'select * from movies'
         cursor.execute(sql)
         results = cursor.fetchall()
         returnArray = []
-        #print(results)
+        
         for result in results:
             resultAsDict = self.convertToDict(result)
             returnArray.append(resultAsDict)
 
         return returnArray
 
+    # Find by Id
     def findById(self, id):
         cursor = self.db.cursor()
         sql = 'select * from movies where id = %s'
@@ -46,7 +47,7 @@ class MovieDao:
         result = cursor.fetchone()
         return self.convertToDict(result)
         
-
+    # Update
     def update(self, movie):
        cursor = self.db.cursor()
        sql = "update movies set title = %s, director = %s, price = %s where id = %s"
@@ -61,6 +62,7 @@ class MovieDao:
        self.db.commit()
        return movie
 
+    # Delete    
     def delete(self, id):
        cursor = self.db.cursor()
        sql = 'delete from movies where id = %s'
@@ -70,7 +72,7 @@ class MovieDao:
        return {}
 
 
-
+    # Convert to dict
     def convertToDict(self, result):
         colnames = ['id','title', 'director', 'price']
         movie = {}

@@ -1,3 +1,12 @@
+<!--Data Representation project 2020--> 
+
+<!--Student: Damien Connolly-->
+ 
+<!--Web page to perform CRUD operations on a sql table--> 
+<!--AJAX is used to perform I/O to a python server, 'server.py', running on 127.0.0.1:5000-->
+
+<!--Run this page in a browser using http:127.0.0.1:5000/index.html--> 
+
 <html>
     <head>
         <title>Movie Database</title>
@@ -18,7 +27,7 @@
     </head>
     <body>
         <div id="create-update" style="display:none">
-            <h2>Create/Edit Movies</h2>
+            <h2 style="font-family:verdana;font-size:400%;">Create/Edit Movies</h2>
             <table id="createUpdateForm">
                 <tr>
                     <td>ID</td>
@@ -197,7 +206,6 @@
         }
         
         function populateTable(){
-            //ajax getAll
            $.ajax({
                "url":'http://127.0.0.1:5000/movies',
                "method":'GET',
